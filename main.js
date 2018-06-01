@@ -1,5 +1,5 @@
 
-// Objects to represent my previous 3 jobs
+// Practice: Objects to represent my previous 3 jobs
 const wellsFargo = Object.create({}, {
   business: {
     value: "Wells Fargo",
@@ -100,7 +100,8 @@ const simplifyCompliance = Object.create({}, {
 })
 
 
-// Function to create a new job
+
+// Challenge: Function to create a new job
 const jobCreator = (companyName, jobTitle, startDate, endDate, goodThings, badThings) => {
   const newObject = Object.create({}, {
     business: {
@@ -139,9 +140,29 @@ const jobCreator = (companyName, jobTitle, startDate, endDate, goodThings, badTh
 
 const nss = jobCreator("Nashville Software School", "Student", "May 2018", "Nov 2018", ["Interesting", "Engaging", "Great hours"], ["Not making any money"]);
 
-const showJob = (jobObject) => {
-  console.log(`${jobObject.title} at ${jobObject.business}`);
+// Shows title and business of previous job
+const showOldJob = (jobObject) => {
+  const oldJob = `${jobObject.title} at ${jobObject.business}`;
+  return oldJob;
 }
 
-showJob(wellsFargo);
-showJob(nss);
+console.log(showOldJob(wellsFargo));
+console.log(showOldJob(nss));
+
+
+// Advanced Challenge: Function to write out all jobs to the DOM
+const allJobs = [wellsFargo, serviceSource, simplifyCompliance, nss];
+
+const createArticle = (jobToCreate) => {
+  const jobOutput = document.createElement("article");
+  jobOutput.innerHTML = `
+  <h3>${showOldJob(jobToCreate)}</h3>
+  <p>From ${jobToCreate.employmentStart} to ${jobToCreate.employmentEnd}</p>
+  <p><strong>Pros:</strong> ${jobToCreate.pros.join(", ")}</p>
+  <p><strong>Cons:</strong> ${jobToCreate.cons.join(", ")}</p>
+  `;
+  return jobOutput;
+}
+
+console.log(createArticle(nss));
+
