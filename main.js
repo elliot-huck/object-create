@@ -102,7 +102,7 @@ const simplifyCompliance = Object.create({}, {
 
 // Function to create a new job
 const jobCreator = (companyName, jobTitle, startDate, endDate, goodThings, badThings) => {
-  Object.create({}, {
+  const newObject = Object.create({}, {
     business: {
       value: companyName,
       enumerable: true,
@@ -134,9 +134,14 @@ const jobCreator = (companyName, jobTitle, startDate, endDate, goodThings, badTh
       writable: true
     }
   })
+  return newObject;
 }
 
-const nss = jobCreator("Nashville Software School", "Student", "May 2018", "Nov 2018", ["Fun", "Interesting", "Engaging", "Great hours"], ["Not making any money"]);
+const nss = jobCreator("Nashville Software School", "Student", "May 2018", "Nov 2018", ["Interesting", "Engaging", "Great hours"], ["Not making any money"]);
 
-console.log(wellsFargo);
-console.log(nss);
+const showJob = (jobObject) => {
+  console.log(`${jobObject.title} at ${jobObject.business}`);
+}
+
+showJob(wellsFargo);
+showJob(nss);
