@@ -27,7 +27,7 @@ const wellsFargo = Object.create({}, {
     writable: true
   },
   cons: {
-    value: ["Difficult schedule", "Nasty customers", "Too much sales", "Not much career advancement", "Not paid very well"],
+    value: ["Difficult schedule", "Nasty customers", "Too much pressure to sell products", "Not much career advancement", "Not paid very well"],
     enumerable: true,
     writable: true
   }
@@ -60,7 +60,7 @@ const serviceSource = Object.create({}, {
     writable: true
   },
   cons: {
-    value: ["Toxic work environment", "Unethical managers", "Unclear job role", "No career advancement", "Disorganized company", "Paid far below market rate", "No follow-through on promises"],
+    value: ["Toxic work environment", "Unethical management", "Unclear job responsibilities", "No career advancement", "Disorganized company", "Paid half of standard market salary for role", "No follow-through on promises"],
     enumerable: true,
     writable: true
   }
@@ -138,7 +138,7 @@ const jobCreator = (companyName, jobTitle, startDate, endDate, goodThings, badTh
   return newObject;
 }
 
-const nss = jobCreator("Nashville Software School", "Student", "May 2018", "Nov 2018", ["Interesting", "Engaging", "Great hours"], ["Not making any money"]);
+const nss = jobCreator("Nashville Software School", "Student", "May 2018", "Nov 2018", ["Mentally stimulating", "Fun environment", "Great hours"], ["Not making any money"]);
 
 // Shows title and business of previous job
 const showOldJob = (jobObject) => {
@@ -156,13 +156,28 @@ const allJobs = [wellsFargo, serviceSource, simplifyCompliance, nss];
 const createArticle = (jobToCreate) => {
   const jobOutput = document.createElement("article");
   jobOutput.innerHTML = `
-  <h3>${showOldJob(jobToCreate)}</h3>
-  <p>From ${jobToCreate.employmentStart} to ${jobToCreate.employmentEnd}</p>
-  <p><strong>Pros:</strong> ${jobToCreate.pros.join(", ")}</p>
-  <p><strong>Cons:</strong> ${jobToCreate.cons.join(", ")}</p>
+  <br>
+  <h2>${showOldJob(jobToCreate)}</h2>
+  <h4>From ${jobToCreate.employmentStart} to ${jobToCreate.employmentEnd}</h4>
+  <p><strong>Pros:</strong><em> ${jobToCreate.pros.join(", ")}</em></p>
+  <p><strong>Cons:</strong><em> ${jobToCreate.cons.join(", ")}</em></p>
   `;
   return jobOutput;
 }
 
 console.log(createArticle(nss));
 
+const writeToDOM = (newArticle) => {
+  const body = document.querySelector("body");
+  body.insertBefore(newArticle, body.lastElementChild);
+}
+
+// writeToDOM(createArticle(nss)); testing writeToDom function
+
+const writeAll = () => {
+  for (let i = 0; i < allJobs.length; i++) {
+    writeToDOM(createArticle(allJobs[i]));
+  }
+}
+
+writeAll();
