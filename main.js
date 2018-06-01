@@ -136,4 +136,7 @@ const jobCreator = (companyName, jobTitle, startDate, endDate, goodThings, badTh
   })
 }
 
-jobCreator("Nashville Software School", "Student", "May 2018", "Nov 2018", ["Fun", "Interesting", "Engaging", "Great hours"], ["Not making any money"]);
+const nss = jobCreator("Nashville Software School", "Student", "May 2018", "Nov 2018", ["Fun", "Interesting", "Engaging", "Great hours"], ["Not making any money"]);
+
+console.log(wellsFargo);
+console.log(nss);
